@@ -9,6 +9,13 @@ func _ready():
 	$XROrigin3D/LeftHand/Pointer.visible = false
 	$XROrigin3D/RightHand/Pointer.visible = true
 	active_hand = $XROrigin3D/RightHand
+	
+	$UIViewport/UI.hide_comp.connect(func():
+		print("hide")
+		$XROrigin3D/OpenXRCompositionLayerEquirect.hide()
+		await get_tree().create_timer(5).timeout
+		$XROrigin3D/OpenXRCompositionLayerEquirect.show()
+		)
 
 
 # Callback for our tween to set the energy level on our active pointer.
