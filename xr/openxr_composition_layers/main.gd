@@ -3,19 +3,31 @@ extends Node3D
 var tween : Tween
 var active_hand : XRController3D
 
+const PLAYER = preload("res://player.tscn")
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$XROrigin3D/LeftHand/Pointer.visible = false
-	$XROrigin3D/RightHand/Pointer.visible = true
-	active_hand = $XROrigin3D/RightHand
+	$StartVR.xr_interface_ready.connect(_on_xr_interface_ready)
+
+
+func _on_xr_interface_ready():
+	print("xr ready received")
+	var player = PLAYER.instantiate()
+	add_child(player)
 	
-	$UIViewport/UI.hide_comp.connect(func():
+	player.get_node("LeftHand/Pointer").visible = false
+	player.get_node("RightHand/Pointer").visible = true
+	active_hand = player.get_node("RightHand")
+	
+	var ui = player.get_node("UIViewport/UI")
+	
+	ui.hide_comp.connect(func():
 		print("hide")
 		$XROrigin3D/OpenXRCompositionLayerEquirect.hide()
 		await get_tree().create_timer(5).timeout
 		$XROrigin3D/OpenXRCompositionLayerEquirect.show()
-		)
+	)
 
 
 # Callback for our tween to set the energy level on our active pointer.

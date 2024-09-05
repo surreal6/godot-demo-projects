@@ -4,6 +4,8 @@ signal focus_lost
 signal focus_gained
 signal pose_recentered
 
+signal xr_interface_ready
+
 @export var maximum_refresh_rate : int = 90
 
 var xr_interface : OpenXRInterface
@@ -35,6 +37,11 @@ func _ready() -> void:
 		xr_interface.session_focussed.connect(_on_openxr_focused_state)
 		xr_interface.session_stopping.connect(_on_openxr_stopping)
 		xr_interface.pose_recentered.connect(_on_openxr_pose_recentered)
+
+
+		await get_tree().create_timer(1).timeout
+		print("xr ready emited")
+		xr_interface_ready.emit()
 	else:
 		# We couldn't start OpenXR.
 		print("OpenXR not instantiated!")
