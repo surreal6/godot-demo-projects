@@ -10,7 +10,7 @@ var was_intersect : Vector2 = NO_INTERSECTION
 
 
 func _ready() -> void:
-	#print("hide")
+	print("hide")
 	hide()
 	pass
 
@@ -49,6 +49,9 @@ func _process(_delta):
 
 	if intersect != NO_INTERSECTION:
 		var is_pressed : bool = controller.is_button_pressed(button_action)
+		
+		if is_pressed and !was_pressed:
+			visible = !visible
 
 		if was_intersect != NO_INTERSECTION and intersect != was_intersect:
 			# Pointer moved

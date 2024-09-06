@@ -11,12 +11,9 @@ var player
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$StartVR.xr_interface_ready.connect(_on_xr_interface_ready)
-	
-	print("main readyyyyyyyyyyyyyyyyyyyyyy")
 
 
 func _on_xr_interface_ready():
-	print("xr ready received")
 	player = PLAYER.instantiate()
 	add_child(player)
 	print("show")
@@ -25,15 +22,6 @@ func _on_xr_interface_ready():
 	player.get_node("LeftHand/Pointer").visible = false
 	player.get_node("RightHand/Pointer").visible = true
 	active_hand = player.get_node("RightHand")
-	
-	var ui = player.get_node("UIViewport/UI")
-	
-	ui.hide_comp.connect(func():
-		print("hide")
-		$XROrigin3D/OpenXRCompositionLayerEquirect.hide()
-		await get_tree().create_timer(5).timeout
-		$XROrigin3D/OpenXRCompositionLayerEquirect.show()
-	)
 
 
 # Callback for our tween to set the energy level on our active pointer.
