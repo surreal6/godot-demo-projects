@@ -5,16 +5,22 @@ var active_hand : XRController3D
 
 const PLAYER = preload("res://player.tscn")
 
+var player
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$StartVR.xr_interface_ready.connect(_on_xr_interface_ready)
+	
+	print("main readyyyyyyyyyyyyyyyyyyyyyy")
 
 
 func _on_xr_interface_ready():
 	print("xr ready received")
-	var player = PLAYER.instantiate()
+	player = PLAYER.instantiate()
 	add_child(player)
+	print("show")
+	player.get_node("OpenXRCompositionLayerEquirect").show()
 	
 	player.get_node("LeftHand/Pointer").visible = false
 	player.get_node("RightHand/Pointer").visible = true
@@ -74,6 +80,13 @@ func _on_right_hand_button_pressed(action_name):
 
 		active_hand = $XROrigin3D/RightHand
 		$XROrigin3D/OpenXRCompositionLayerEquirect.controller = active_hand
+		
+		if player.get_node("OpenXRCompositionLayerEquirect").visible:
+			print("hideeee")
+			player.get_node("OpenXRCompositionLayerEquirect").hide()
+		else:
+			print("shoooow")
+			player.get_node("OpenXRCompositionLayerEquirect").show()
 
 		# Make a visual pulse.
 		_do_tween_energy()

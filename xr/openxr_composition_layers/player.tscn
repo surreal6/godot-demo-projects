@@ -9,7 +9,7 @@
 radius = 0.02
 height = 0.04
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_orqdv"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q1jpx"]
 resource_local_to_scene = true
 resource_name = "Left hand pointer material"
 render_priority = 0
@@ -17,7 +17,7 @@ shader = ExtResource("2_erhfu")
 shader_parameter/color = Color(1, 0, 0, 0.5)
 shader_parameter/energy = 1.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_7l6s0"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_iqtoo"]
 resource_local_to_scene = true
 resource_name = "Right hand pointer material"
 render_priority = 0
@@ -43,7 +43,7 @@ mesh = SubResource("SphereMesh_078nk")
 
 [node name="Pointer" parent="LeftHand" instance=ExtResource("1_r868a")]
 visible = false
-material_override = SubResource("ShaderMaterial_orqdv")
+material_override = SubResource("ShaderMaterial_q1jpx")
 
 [node name="RightHand" type="XRController3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1, -0.5)
@@ -55,7 +55,7 @@ show_when_tracked = true
 mesh = SubResource("SphereMesh_078nk")
 
 [node name="Pointer" parent="RightHand" instance=ExtResource("1_r868a")]
-material_override = SubResource("ShaderMaterial_7l6s0")
+material_override = SubResource("ShaderMaterial_iqtoo")
 
 [node name="OpenXRCompositionLayerEquirect" type="OpenXRCompositionLayerEquirect" parent="." node_paths=PackedStringArray("layer_viewport", "controller")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
