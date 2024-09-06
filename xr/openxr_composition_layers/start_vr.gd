@@ -38,7 +38,7 @@ func _ready() -> void:
 		xr_interface.session_stopping.connect(_on_openxr_stopping)
 		xr_interface.pose_recentered.connect(_on_openxr_pose_recentered)
 
-
+		# allow main.gd to connect to the signal
 		await get_tree().create_timer(0.1).timeout
 		print("xr ready emited")
 		xr_interface_ready.emit()
