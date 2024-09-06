@@ -9,12 +9,6 @@ var was_pressed : bool = false
 var was_intersect : Vector2 = NO_INTERSECTION
 
 
-func _ready() -> void:
-	print("hide")
-	hide()
-	pass
-
-
 # Pass input events on to viewport.
 func _input(event):
 	if not layer_viewport:

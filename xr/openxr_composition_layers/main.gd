@@ -68,13 +68,6 @@ func _on_right_hand_button_pressed(action_name):
 
 		active_hand = $XROrigin3D/RightHand
 		$XROrigin3D/OpenXRCompositionLayerEquirect.controller = active_hand
-		
-		if player.get_node("OpenXRCompositionLayerEquirect").visible:
-			print("hideeee")
-			player.get_node("OpenXRCompositionLayerEquirect").hide()
-		else:
-			print("shoooow")
-			player.get_node("OpenXRCompositionLayerEquirect").show()
 
 		# Make a visual pulse.
 		_do_tween_energy()

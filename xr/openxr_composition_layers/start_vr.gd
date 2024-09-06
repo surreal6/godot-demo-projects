@@ -39,7 +39,7 @@ func _ready() -> void:
 		xr_interface.pose_recentered.connect(_on_openxr_pose_recentered)
 
 
-		await get_tree().create_timer(1).timeout
+		await get_tree().create_timer(0.1).timeout
 		print("xr ready emited")
 		xr_interface_ready.emit()
 	else:
